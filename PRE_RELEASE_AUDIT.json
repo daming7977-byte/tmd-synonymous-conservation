@@ -11,9 +11,11 @@
     "Updated release audit and digest inventory",
     "Aligned ST1 temporal evidence metadata with the frozen submission table; numerical fields unchanged",
     "Added freeze-candidate manuscript and supplement PDF SHA256 identifiers",
-    "Refreshed release digest inventory after metadata synchronization"
+    "Refreshed release digest inventory after metadata synchronization",
+    "Recorded creation of authenticated private GitHub repository; public release and DOI remain pending"
   ],
   "github_authenticated": true,
   "public_repository": null,
-  "doi": null
+  "doi": null,
+  "private_repository": "https://github.com/daming7977-byte/tmd-synonymous-conservation"
 }

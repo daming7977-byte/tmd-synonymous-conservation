@@ -5,7 +5,7 @@ Reproducibility code and archived summary results for the combined human membran
 ## Contents
 
 - code/: project-authored scientific/validation scripts and the figure renderer; MIT applies only here.
-- results/: unchanged ST1, ST2 and joint-test tables.
+- results/: ST1 with metadata-only evidence/timing alignment to the frozen submission table, plus unchanged ST2 and joint-test tables; numerical/statistical values are unchanged.
 - source_summaries/: unchanged small archived descriptive/technical summaries, not raw or third-party author tables.
 - manifests/: historical local contracts and selected freeze digests, with private path prefixes removed where needed.
 - PROVENANCE.tsv and PATH_EDIT_LOG.tsv: original file digests and release-copy differences.
@@ -29,6 +29,6 @@ Public input datasets: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE297
 
 ## Release and archival status
 
-CITATION.cff intentionally has no repository URL, DOI or release date until publication. GitHub repository and Zenodo archival must be completed using the author's authenticated account; no account creation or login is automated here. Follow RELEASE_CHECKLIST.md. No separately closed extension results are included.
+CITATION.cff intentionally has no public repository URL, DOI or release date until publication. A private GitHub repository has been created at https://github.com/daming7977-byte/tmd-synonymous-conservation . No public repository, published release or DOI is claimed yet. Zenodo archival remains pending. Follow RELEASE_CHECKLIST.md. No separately closed extension results are included.
 
 Full manuscript freeze identifiers are retained in manifests/MANUSCRIPT_FREEZE_HASHES.md. This editorial release preparation did not execute scientific code or alter archived results.
