@@ -9,7 +9,7 @@ code/P5_V2_GENE_LEVEL_COMPANION_v1.py	Runtime path configuration only; original 
 code/P5_V2_IMPLEMENTATION_AUDIT_v1.py	Runtime path configuration only; original archived source unmodified
 code/P5_V2_RUN_ALL_12_MPT_FULL.sh	Runtime path configuration only; original archived source unmodified
 code/P5_V2_RUN_ALL_6_OSTA_FULL.sh	Runtime path configuration only; original archived source unmodified
-code/render_submission_assets.py	Runtime path configuration only; original archived source unmodified
+code/render_submission_assets.py	Runtime path configuration plus release-documentation header identifying the renderer as historical/non-authoritative for the final frozen presentation; scientific rendering logic otherwise retained
 manifests/P5_PREREVEAL_BRIDGE_MODEL_FREEZE_SHA256SUMS.txt	Historical path labels made repository-relative; hash digests unchanged
 manifests/P5_V2_FINAL_REVEAL_IMPLEMENTATION_FREEZE_SHA256SUMS.txt	Historical path labels made repository-relative; hash digests unchanged
 manifests/P5_V2_PREREVEAL_MPT_MODEL_FREEZE_SHA256SUMS.txt	Historical path labels made repository-relative; hash digests unchanged

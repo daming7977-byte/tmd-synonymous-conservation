@@ -13,4 +13,4 @@ P5_STAGE1A_RUN_FULL_TMD_PROJECTION.py	04_STAGE1_EVOLUTION/03_FULL_EVOLUTION_DATA
 P5_STAGE1B_FIRST_FROZEN_BRIDGE_REVEAL.py	04_STAGE1_EVOLUTION/03_FULL_EVOLUTION_DATA/P5_STAGE1B_FIRST_FROZEN_BRIDGE_REVEAL.py	Historical spatial ST2	NOT RUN
 finalize_validation1_review.py	05_GSE297497_MPT_BRIDGE/15_PUBLICATION_VALIDATION/01_AUTHOR_REPRODUCTION/finalize_validation1_review.py	Author-reconstruction final review/counting fixture provenance	NOT RUN
 verify_counting_fixture.py	05_GSE297497_MPT_BRIDGE/15_PUBLICATION_VALIDATION/01_AUTHOR_REPRODUCTION/verify_counting_fixture.py	Author-reconstruction final review/counting fixture provenance	NOT RUN
-render_submission_assets.py	Submission-derived rendering entry point	Figures 1–4/S1–S3 and ST1/ST2; archived values only	Underlying same rendering code executed; standalone entry point source-checked
+render_submission_assets.py	Historical submission-derived rendering entry point	Historical Figures 1–4/S1–S3 and ST1/ST2 renderer; not authoritative for final frozen presentation	NOT RUN for final release correction; frozen PDFs and curated release tables are authoritative

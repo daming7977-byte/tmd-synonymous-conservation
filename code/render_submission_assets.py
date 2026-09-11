@@ -1,3 +1,10 @@
+# HISTORICAL PRESENTATION NOTE — v1.0.0 release
+# This file is preserved as the historical submission-rendering entry point.
+# It is NOT authoritative for the final frozen ST1 evidence/timing metadata or
+# final figure wording/layout. The frozen manuscript/supplement PDFs and the
+# curated release tables/source summaries are authoritative.
+# Do not use this script to overwrite frozen submission assets.
+#
 from pathlib import Path
 import csv, gzip, json, re, shutil, hashlib, os, sys
 os.environ['MPLCONFIGDIR']=os.environ['P5_MPLCONFIGDIR']

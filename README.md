@@ -1,10 +1,10 @@
 # Evolutionary-functional membrane-protein boundary study
 
-Reproducibility code and archived summary results for the combined human membrane-protein study. Author: Ming Li. Scientific analysis is closed. This repository candidate is prepared for version v1.0.0; no GitHub URL, published release or DOI is claimed until actually issued.
+Reproducibility code and archived summary results for the combined human membrane-protein study. Author: Ming Li. Scientific analysis is closed. This private repository is the v1.0.0 release candidate; the repository URL is recorded and Zenodo DOI 10.5281/zenodo.22705327 is reserved but not yet registered. No public GitHub release is claimed yet.
 
 ## Contents
 
-- code/: project-authored scientific/validation scripts and the figure renderer; MIT applies only here.
+- code/: project-authored scientific/validation scripts plus a historical submission-rendering entry point; MIT applies only here. Frozen submission presentation is authoritative over the historical renderer.
 - results/: ST1 with metadata-only evidence/timing alignment to the frozen submission table, plus unchanged ST2 and joint-test tables; numerical/statistical values are unchanged.
 - source_summaries/: unchanged small archived descriptive/technical summaries, not raw or third-party author tables.
 - manifests/: historical local contracts and selected freeze digests, with private path prefixes removed where needed.
