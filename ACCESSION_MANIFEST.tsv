@@ -1,0 +1,3 @@
+accession	dataset_title	public_date	repository	persistent_url	bioproject	associated_pmid	role	sample_run_manifest
+GSE297497	Translocon remodeling during protein synthesis at the ER	2025-08-30	NCBI GEO	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE297497	PRJNA1265091	41116047	Main human selective ribosome profiling; MPT and OST-A	manifests/P5_V2_MPT_12RUN_MANIFEST.tsv; manifests/P5_V2_OSTA_6RUN_MANIFEST.tsv
+GSE300977	Proximity-specific ribosome profiling reveals the logic of localized mitochondrial translation	2025-08-27	NCBI GEO	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE300977	PRJNA1282765	40876456	Historical orthogonal spatial readout	Lower-level historical sample-to-file provenance unresolved; not inferred from series-level metadata

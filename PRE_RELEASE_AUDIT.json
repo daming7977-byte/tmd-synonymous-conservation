@@ -1,0 +1,19 @@
+{
+  "status": "PRE_RELEASE_REVIEW",
+  "scientific_code_executed": false,
+  "author_owned_code_byte_identical": true,
+  "privacy_pattern_hits": 0,
+  "restricted_third_party_payloads_included": false,
+  "license_scope": "MIT for author-owned code only",
+  "changes": [
+    "README points to relocated freeze hashes",
+    "Added manifests/MANUSCRIPT_FREEZE_HASHES.md",
+    "Updated release audit and digest inventory",
+    "Aligned ST1 temporal evidence metadata with the frozen submission table; numerical fields unchanged",
+    "Added freeze-candidate manuscript and supplement PDF SHA256 identifiers",
+    "Refreshed release digest inventory after metadata synchronization"
+  ],
+  "github_authenticated": true,
+  "public_repository": null,
+  "doi": null
+}

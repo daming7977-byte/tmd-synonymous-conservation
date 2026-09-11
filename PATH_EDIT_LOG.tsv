@@ -1,0 +1,15 @@
+file	change
+code/P5_STAGE1A_BUILD_FULL_EVOLUTION_SCORE.py	Runtime path configuration only; original archived source unmodified
+code/P5_STAGE1A_RUN_FULL_TMD_PROJECTION.py	Runtime path configuration only; original archived source unmodified
+code/P5_STAGE1B_FIRST_FROZEN_BRIDGE_REVEAL.py	Runtime path configuration only; original archived source unmodified
+code/P5_V2_BUILD_AND_REVEAL.py	Runtime path configuration only; original archived source unmodified
+code/P5_V2_BUILD_OSTA_SPECIFICITY_v1.py	Runtime path configuration only; original archived source unmodified
+code/P5_V2_FULL_B_NORMALIZATION_v1.py	Runtime path configuration only; original archived source unmodified
+code/P5_V2_GENE_LEVEL_COMPANION_v1.py	Runtime path configuration only; original archived source unmodified
+code/P5_V2_IMPLEMENTATION_AUDIT_v1.py	Runtime path configuration only; original archived source unmodified
+code/P5_V2_RUN_ALL_12_MPT_FULL.sh	Runtime path configuration only; original archived source unmodified
+code/P5_V2_RUN_ALL_6_OSTA_FULL.sh	Runtime path configuration only; original archived source unmodified
+code/render_submission_assets.py	Runtime path configuration only; original archived source unmodified
+manifests/P5_PREREVEAL_BRIDGE_MODEL_FREEZE_SHA256SUMS.txt	Historical path labels made repository-relative; hash digests unchanged
+manifests/P5_V2_FINAL_REVEAL_IMPLEMENTATION_FREEZE_SHA256SUMS.txt	Historical path labels made repository-relative; hash digests unchanged
+manifests/P5_V2_PREREVEAL_MPT_MODEL_FREEZE_SHA256SUMS.txt	Historical path labels made repository-relative; hash digests unchanged

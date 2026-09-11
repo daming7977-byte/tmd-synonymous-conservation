@@ -1,0 +1,5 @@
+stage_order	stage	manuscript_stage	TMD_N	gene_N	TMD_excluded_from_prior	gene_excluded_from_prior	TMD_fraction_retained_from_prior	TMD_fraction_retained_from_initial_5538	gene_fraction_retained_from_prior	gene_fraction_retained_from_initial_1400
+1	prelocked	Prelocked scored internal TMDs	5538	1400	0	0	1.0	1.0	1.0	1.0
+2	primary_geometry	Complete primary +30 to +90 amino-acid window	5538	1400	0	0	1.0	1.0	1.0	1.0
+3	all_six_input_A_positive	Positive transcript-wide input A_j in all six MPT profiles	2796	736	2742	664	0.504875406283857	0.504875406283857	0.5257142857142857	0.5257142857142857
+4	formal_primary_valid	Frozen formal primary-valid set	2796	736	0	0	1.0	0.504875406283857	1.0	0.5257142857142857

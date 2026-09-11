@@ -1,0 +1,4 @@
+legacy_candidate_file	exclusion_reason
+code/build_p5_submission.py	Obsolete one-time manuscript packager; contains superseded text and workstation paths
+manifests/P5_V2_B_NORMALIZATION_SHA256.txt	Broad dependency/file inventory; original digest retained privately; not needed in public small-file release
+manifests/SOFTWARE_MANIFEST_SHA256.txt	Broad dependency/file inventory; original digest retained privately; not needed in public small-file release

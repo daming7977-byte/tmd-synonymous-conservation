@@ -1,0 +1,554 @@
+project: P5_v2_direct_translocon_bridge
+stage: prereveal_MPT_model_freeze
+
+history:
+
+  P5_v1_P3_spatial_bridge:
+    status: INTERMEDIATE_UNSUPPORTED
+    rescue_authorized: false
+    alternative_window_scan_authorized: false
+
+  P5_v2_stage0:
+
+    exact_protein_bridge:
+      genes: 1400
+      scored_internal_TMDs: 5538
+
+    TMD_structural_correspondence:
+      scored_internal_TMDs: 5538
+      uniquely_mapped: 5538
+      fraction: 1.0
+
+    author_cutadapt_reproduction:
+      MPT_runs: 12
+      passed: 12
+      gate: GREEN
+
+    RefSeq_bridge:
+      author_unique_transcripts: 18640
+      exact_refFlat_match_fraction: 1.0
+
+    canonical_P5_bridge:
+      genes: 1400
+      unique_canonical_fraction: 1.0
+      gate: GREEN
+
+blinding:
+
+  MPT_positional_outcome_calculated: false
+  MPT_TMD_outcome_viewed: false
+  evolutionary_predictor_frozen: true
+
+  predictor_redefinition_allowed: false
+  evolutionary_window_retuning_allowed: false
+  MPT_outcome_window_retuning_allowed: false
+  post_hoc_factor_selection_allowed: false
+
+
+evolutionary_predictor:
+
+  name: POST30_90_4D_EXCESS_CONSERVATION_Z_MEDIAN
+
+  source:
+    P5_STAGE1A_FULL_TMD_EVOLUTION_SCORE.tsv
+
+  evolutionary_window:
+    TMD_C_end_plus_30_through_plus_90_codons
+
+  frozen_before_GSE297497_outcome: true
+
+  primary_bridge_population:
+    exact_author_multipass_genes: 1400
+    structurally_mapped_scored_internal_TMDs: 5538
+
+  standardization:
+    method: z_score
+    reference_population: all_5538_prelocked_TMDs
+    outcome_independent: true
+
+
+formal_processing:
+
+  biological_read:
+    mate: R1
+    R2_used: false
+
+  cutadapt:
+
+    version: 4.1
+
+    exact_parameters:
+      adapter: AAAAAAAA
+      error_rate: 0.2
+      remove_first_nt: 7
+      minimum_length: 18
+      maximum_length: 35
+
+    command_template: >
+      cutadapt -a AAAAAAAA -e 0.2 -u 7 -m 18 -M 35
+
+  rRNA_filter:
+
+    aligner: Bowtie2
+    version: 2.2.6
+
+    formal_reference:
+      - NR_023363.1
+      - NR_003285.3
+      - NR_003286.4
+      - NR_003287.4
+
+    reason:
+      publication_specific_Methods_precede_generic_repository_reference
+
+    publication_specification:
+      allow_up_to_two_mismatches: true
+
+    generic_repo_550_record_rRNA_reference_used_formally: false
+
+  genomic_mapping:
+
+    genome: hg38
+
+    transcriptome:
+      source: UCSC_hg38_RefSeq
+      type: RefSeq_defined
+
+    aligner:
+      name: TopHat
+      version: 2.1.0
+
+    uniquely_mapped_reads_only: true
+    unique_mapping_tag: "NH:i:1"
+
+  representative_transcript:
+
+    source:
+      GSE297497_Source_Data_1_DeepTMHMM_topology
+
+    transcript_system:
+      UCSC_hg38_RefSeq
+
+    exact_refFlat_coverage:
+      numerator: 18640
+      denominator: 18640
+
+    canonical_resolution_for_P5:
+      numerator: 1400
+      denominator: 1400
+
+  footprint_lengths:
+
+    primary_selected_lengths:
+      - 18
+      - 19
+      - 20
+      - 26
+      - 27
+      - 28
+      - 29
+
+    alternative_length_selection_after_reveal_allowed: false
+
+  A_site_assignment:
+
+    offset_nt_from_fragment_5prime: 15
+    fixed_for_all_selected_fragment_lengths: true
+    reestimation_from_P5_results_allowed: false
+
+  positional_occupancy:
+
+    extend_A_site_adjusted_read:
+      upstream_nt: 50
+      downstream_nt: 50
+
+    positional_unit:
+      codon
+
+    occupancy_normalization:
+      read_per_million
+
+  cytonuclear_background:
+
+    source:
+      GSE297497_Source_Data_1_DeepTMHMM_topology
+
+    class:
+      CYTONUC
+
+    observed_source_data_count: 12463
+
+    use:
+      calculate_B_IP_and_B_Input
+
+    class_redefinition_allowed: false
+
+
+positional_enrichment:
+
+  per_profile_per_codon:
+
+    formula: >
+      E_i_j =
+      ((IP_i_j + A_j) / B_IP) /
+      ((Input_i_j + A_j) / B_Input)
+
+    components:
+
+      IP_i_j:
+        definition:
+          positional_RPM_at_codon_i_in_gene_j_in_IP
+
+      Input_i_j:
+        definition:
+          positional_RPM_at_codon_i_in_gene_j_in_input
+
+      A_j:
+        definition:
+          mean_positional_RPM_across_CDS_of_gene_j_in_corresponding_input
+
+      B_IP:
+        definition:
+          summed_expression_of_CYTONUC_background_in_IP
+
+      B_Input:
+        definition:
+          summed_expression_of_CYTONUC_background_in_input
+
+  transform_for_P5_regression:
+    log2_E: true
+
+  primary_TMD_analysis_does_not_threshold_on_codon_p_value: true
+
+  author_peak_calls:
+
+    role:
+      secondary_descriptive_validation
+
+    definition:
+      E_greater_than: 3
+      BH_adjusted_p_less_than: 0.001
+
+    do_not_use_to_select_primary_TMDs: true
+
+
+MPT_profiles:
+
+  TMCO1:
+
+    replicate_1:
+      input: GSM8993189
+      IP: GSM8993190
+
+    replicate_2:
+      input: GSM8993191
+      IP: GSM8993192
+
+  CCDC47:
+
+    replicate_1:
+      input: GSM8993193
+      IP: GSM8993194
+
+    replicate_2:
+      input: GSM8993195
+      IP: GSM8993196
+
+  Nicalin:
+
+    replicate_1:
+      input: GSM8993197
+      IP: GSM8993198
+
+    replicate_2:
+      input: GSM8993199
+      IP: GSM8993200
+
+
+primary_TMD_outcome:
+
+  biological_interpretation:
+    cotranslational_MPT_engagement_after_TMD_emergence
+
+  window:
+
+    anchor:
+      author_DeepTMHMM_TMD_C_terminal_end
+
+    start:
+      plus_30_codons
+
+    end:
+      plus_90_codons
+
+    inclusive: true
+    number_of_codons: 61
+
+    rationale:
+      - matched_to_evolutionary_predictor_window_frozen_before_GSE297497
+      - captures_translation_after_prior_TMD_has_emerged_from_ribosome
+      - tests_direct_MPT_state_during_post_TMD_biogenesis
+
+    full_window_required: true
+    alternative_primary_windows_after_reveal_allowed: false
+
+  per_profile_TMD_score:
+
+    definition:
+      arithmetic_mean_of_log2_E_over_61_window_codons
+
+  primary_MPT_TMD_score:
+
+    definition:
+      arithmetic_mean_of_six_per_profile_TMD_scores
+
+    profile_weighting:
+      equal_weight_per_profile
+
+    require_all_six_profiles_valid: true
+
+  validity:
+
+    corresponding_input_A_j_must_be_positive_for_all_six_profiles: true
+    full_61_codon_window_required: true
+    outcome_based_TMD_selection: false
+
+
+primary_model:
+
+  analysis_unit:
+    individual_internal_TMD
+
+  outcome:
+    primary_MPT_TMD_score
+
+  predictor:
+    standardized_frozen_evolutionary_score
+
+  model:
+    OLS
+
+  cluster_robust_SE:
+    human_ensembl_gene
+
+  test:
+    two_sided_score_coefficient
+
+  alpha:
+    0.05
+
+  reporting:
+    - beta_per_1SD_evolution_score
+    - cluster_robust_SE
+    - 95_percent_CI
+    - p_value
+
+  no_directional_one_sided_test: true
+
+
+adjusted_model:
+
+  same_outcome: true
+  same_primary_TMD_universe_definition: true
+  same_gene_cluster: true
+
+  covariates:
+
+    evolutionary_side:
+      - median_window_aa_identity
+      - human_window_GC3
+      - human_window_CpG_density
+
+    TMD_physics:
+      - TMD_length_aa
+      - TMD_mean_Kyte_Doolittle_hydropathy
+
+    local_architecture:
+      - TMD_index
+      - log1p_downstream_nonTMD_segment_length_aa
+      - downstream_segment_lumenal_indicator
+
+  rationale_for_local_architecture_covariates: >
+    Published GSE297497 results show MPT engagement depends strongly
+    on local TMD and downstream-segment architecture.
+
+  standardization:
+
+    continuous_covariates:
+      method: z_score
+
+    reference_population:
+      prelocked_5538_TMDs_with_nonmissing_covariate
+
+    outcome_independent: true
+
+  no_outcome_driven_covariate_selection: true
+
+
+within_protein_model:
+
+  purpose: >
+    Test whether TMD-to-TMD variation in frozen synonymous
+    evolutionary constraint within the same multipass protein
+    predicts TMD-to-TMD variation in MPT engagement.
+
+  minimum_valid_TMDs_per_gene:
+    2
+
+  transformation:
+
+    outcome:
+      subtract_gene_mean
+
+    predictor:
+      subtract_gene_mean
+
+    continuous_covariates:
+      subtract_gene_mean
+
+  equivalent:
+    gene_fixed_effects: true
+
+  cluster_robust_SE:
+    human_ensembl_gene
+
+  primary_test:
+    two_sided_within_gene_score_coefficient
+
+  alpha:
+    0.05
+
+
+factor_specific_secondary:
+
+  TMCO1:
+    outcome:
+      arithmetic_mean_of_two_TMCO1_profile_TMD_scores
+
+  CCDC47:
+    outcome:
+      arithmetic_mean_of_two_CCDC47_profile_TMD_scores
+
+  Nicalin:
+    outcome:
+      arithmetic_mean_of_two_Nicalin_profile_TMD_scores
+
+  multiplicity:
+    method: Holm
+    family_size: 3
+
+
+replicate_sensitivity:
+
+  outcomes:
+    - TMCO1_rep1
+    - TMCO1_rep2
+    - CCDC47_rep1
+    - CCDC47_rep2
+    - Nicalin_rep1
+    - Nicalin_rep2
+
+  role:
+    robustness_not_primary_hypothesis_testing
+
+  high_confidence_pattern:
+
+    all_three_factors_same_direction_as_primary: true
+
+    no_single_factor_entirely_driven_by_opposite_replicate: true
+
+
+temporal_negative_control:
+
+  outcome:
+
+    anchor:
+      author_DeepTMHMM_TMD_N_terminal_start
+
+    window:
+      minus_90_through_minus_30_codons
+
+    inclusive: true
+    number_of_codons: 61
+    full_window_required: true
+
+  calculation:
+    same_six_profile_mean_log2_E_procedure_as_primary
+
+  interpretation: >
+    A similarly strong association before the focal TMD would weaken
+    interpretation that the evolutionary score specifically predicts
+    post-TMD cotranslational MPT engagement.
+
+  role:
+    predefined_negative_control
+
+  not_authorized_as_alternative_primary_window: true
+
+
+gene_level_companion:
+
+  source:
+    publication_gene_level_MPT_enrichment
+
+  role:
+    determine_whether_TMD_level_signal_is_merely_gene_level_preference
+
+  primary_claim_does_not_depend_on_gene_level_companion: true
+
+
+OST_A:
+
+  role:
+    mechanistic_secondary_only
+
+  not_part_of_primary_P5_v2_hypothesis: true
+
+  may_not_rescue_negative_MPT_primary: true
+
+  raw_processing:
+    only_after_primary_MPT_adjudication: true
+
+  interpretation_if_available:
+    test_mechanistic_specificity_of_MPT_vs_open_Sec61_OST_A_state
+
+
+STOP_primary_P5_v2_if_all:
+
+  - primary_population_score_p_greater_or_equal_0.05
+  - adjusted_population_score_p_greater_or_equal_0.05
+  - within_protein_score_p_greater_or_equal_0.05
+
+
+if_STOP:
+
+  - no_alternative_evolutionary_window_scan
+  - no_alternative_MPT_window_scan
+  - no_predictor_redefinition
+  - no_factor_post_hoc_selection
+  - no_OST_A_rescue_of_primary_hypothesis
+  - archive_direct_MPT_bridge_as_negative
+
+
+STRONG_bridge_support_if_all:
+
+  - primary_population_score_p_less_than_0.05
+  - adjusted_population_score_p_less_than_0.05
+  - within_protein_score_p_less_than_0.05
+
+
+high_tier_story_strengthened_by:
+
+  - same_direction_across_TMCO1_CCDC47_Nicalin
+  - replicate_robustness
+  - temporal_negative_control_weaker_than_primary
+  - gene_level_companion_does_not_explain_within_protein_effect
+  - biologically_substantial_effect_size
+
+
+causal_claim:
+
+  authorized: false
+
+  reason:
+    observational_public_data_integration_without_synonymous_perturbation

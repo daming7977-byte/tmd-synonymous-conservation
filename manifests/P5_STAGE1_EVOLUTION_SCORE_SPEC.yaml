@@ -1,0 +1,153 @@
+project:
+  stage: Stage1
+  status: evolution_side_only
+
+primary_question: >
+  Does mammalian evolutionary constraint on TMD-relative synonymous
+  organization predict an independently frozen human spatial translation phenotype?
+
+blinding:
+  P3_spatial_outcome_loaded: false
+  P4_evolutionary_result_loaded: false
+  predictor_definition_allowed_to_change_after_P3_reveal: false
+
+human_reference:
+  requirement: exact frozen P3 Ensembl104/APPRIS CDS
+  current_Ensembl_CDS_may_replace_frozen_CDS: false
+  reason: synonymous_sequence_can_change_without_protein_change
+
+species:
+  source: frozen Stage0 panel
+  n_target_mammals: 12
+  relationship: ortholog_one2one
+  minimum_species_for_TMD_score: 6
+
+primary_evolutionary_score:
+  name: POST30_90_4D_EXCESS_CONSERVATION_Z_MEDIAN
+
+  tmd_relative_window:
+    coordinate_reference: TMD_C_terminal_end
+    start_codons_after_TMD_end: 30
+    end_codons_after_TMD_end: 90
+    full_window_required: true
+
+  biological_rationale: >
+    This post-TMD corridor spans the region in which delayed translation
+    has been reported downstream of subsequent membrane-protein TMDs.
+    The window is frozen without access to P3 spatial outcomes.
+
+  informative_sites:
+    amino_acid_must_match_between_human_and_target: true
+
+    fourfold_degenerate_amino_acids:
+      - A
+      - G
+      - P
+      - T
+      - V
+
+    compared_state: third_codon_base
+
+    minimum_informative_sites_per_gene_species_TMD: 5
+
+  per_gene_species_null:
+    type: exact_same_gene_same_amino_acid_hypergeometric
+
+    definition: >
+      For each conserved fourfold-degenerate amino acid, compare the
+      number of exact human-target third-base matches in the frozen
+      TMD-relative window with the number expected when synonymous
+      match states are randomly distributed across all conserved
+      positions encoding the same amino acid in that gene-species pair.
+
+    preserves:
+      - human_protein_sequence
+      - target_protein_sequence
+      - amino_acid_identity
+      - gene_identity
+      - species_identity
+      - gene_wide_synonymous_conservation_rate
+      - amino_acid_composition
+
+    per_species_output:
+      - observed_exact_third_base_matches
+      - expected_matches
+      - null_variance
+      - excess_conservation_z
+      - informative_4d_sites
+
+  cross_species_aggregation:
+    primary: median_valid_species_z
+    minimum_valid_species: 6
+
+    sensitivities:
+      - mean_valid_species_z
+      - leave_one_clade_out
+
+  interpretation:
+    positive: >
+      excess TMD-relative synonymous conservation beyond the
+      same-gene same-amino-acid expectation
+    zero: no_local_excess
+    negative: local_depletion_of_synonymous_conservation
+
+predefined_secondary_windows:
+
+  TMD_CORE:
+    start: TMD_start
+    end: TMD_end
+
+  POST1_30:
+    start: TMD_end_plus_1
+    end: TMD_end_plus_30
+
+  PRE60:
+    start: TMD_start_minus_60
+    end: TMD_start_minus_1
+
+negative_controls:
+  - P3_frozen_pseudo_anchor
+  - PRE60_directional_control
+
+predefined_sequence_covariates:
+  - human_window_GC3
+  - human_window_CpG_density
+  - amino_acid_conservation
+  - informative_species_count
+  - informative_4d_site_count
+
+predefined_TMD_covariates_for_later_bridge:
+  - TMD_length
+  - TMD_hydrophobicity
+  - TMD_order
+  - FIRST_INTERNAL
+  - topology
+  - gene_random_intercept
+
+primary_bridge_not_allowed_until:
+  - evolutionary_score_table_frozen
+  - pseudo_anchor_score_table_frozen
+  - covariate_table_frozen
+  - bridge_model_spec_frozen
+
+important_nonclaims:
+  - exact synonymous conservation_does_not_equal_translation_slowing
+  - association_does_not_equal_causation
+  - codon_optimality_is_not_primary_metric
+
+Stage1A_score_coverage_gate:
+
+  GREEN: >
+    at least 70 percent of pilot internal TMDs obtain a finite primary
+    evolutionary score from at least 6 mammals
+
+  YELLOW: >
+    50 to less than 70 percent
+
+  RED: >
+    less than 50 percent
+
+Stage1_stop_rule:
+  - stop_if_primary_score_cannot_be_constructed_reliably
+  - do_not_scan_alternative_windows_to_rescue_bridge
+  - do_not_replace_primary_metric_after_P3_reveal

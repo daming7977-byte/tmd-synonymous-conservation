@@ -1,0 +1,219 @@
+project: P5_evolution_spatial_bridge
+stage: pre_reveal_bridge_model_freeze
+
+blinding:
+  P3_phenotype_values_read: false
+  evolutionary_predictor_frozen: true
+  primary_window_retuning_allowed: false
+  predictor_redefinition_allowed: false
+
+bridge_universe:
+  frozen_scored_internal_TMDs: 6511
+  exactly_one_P3_unit: 4580
+  exactly_one_P3_unit_and_density_row: 4505
+  multiple_P3_units: 0
+  primary_bridge_TMDs: 4505
+
+predictor:
+  primary:
+    name: POST30_90_4D_EXCESS_CONSERVATION_Z_MEDIAN
+    window: TMD_end_plus_30_through_plus_90
+    standardization:
+      method: z_score
+      reference_population: all_4505_prelocked_bridge_TMDs
+      outcome_independent: true
+
+P3_outcome_construction:
+
+  source:
+    unit_density_table: PRIMARY_PLUS75_UNIT_DENSITIES_v1.tsv
+
+  replicate_library_pairs:
+
+    ER:
+      replicate_1:
+        pulldown: B01
+        input: B02
+      replicate_2:
+        pulldown: B11
+        input: B12
+
+    mitochondria:
+      replicate_1:
+        pulldown: B09
+        input: B10
+      replicate_2:
+        pulldown: B07
+        input: B08
+
+    cytosol:
+      replicate_1:
+        pulldown: B05
+        input: B06
+      replicate_2:
+        pulldown: B03
+        input: B04
+
+  per_TMD_per_location_per_replicate:
+
+    E_real: log2(real_pulldown_density / real_input_density)
+    E_pseudo: log2(pseudo_pulldown_density / pseudo_input_density)
+    D: E_real_minus_E_pseudo
+
+    pseudocount: none
+
+    validity:
+      require_all_four_densities_strictly_positive: true
+
+  primary_location_outcome:
+    D_mean: arithmetic_mean_of_D_rep1_and_D_rep2
+    require_both_replicates_valid: true
+
+primary_model:
+
+  analysis_unit:
+    - TMD
+    - location
+
+  locations:
+    - ER
+    - mitochondria
+    - cytosol
+
+  model:
+    type: OLS
+    parameterization: location_specific_score_slopes
+    cluster_robust_SE: human_ensembl_gene
+
+  primary_test:
+    null: beta_ER_equals_beta_mito_equals_beta_cytosol_equals_zero
+    degrees_of_freedom: 3
+    test: cluster_robust_Wald
+    alpha: 0.05
+
+  location_specific_effects:
+    reporting:
+      - beta
+      - standard_error
+      - 95_percent_CI
+      - p_value
+    multiplicity:
+      method: Holm
+      family_size: 3
+    role: secondary_to_joint_primary_test
+
+compartment_specificity_test:
+
+  null:
+    beta_ER_equals_beta_mito_equals_beta_cytosol
+
+  test:
+    type: cluster_robust_Wald
+    degrees_of_freedom: 2
+
+  interpretation:
+    significant: evidence_for_compartment_specific_evolution_spatial_relationship
+    nonsignificant: bridge_may_exist_but_not_differentially_by_compartment
+
+adjusted_model:
+
+  same_primary_outcome: true
+  same_primary_bridge_universe_definition: true
+  same_cluster: human_ensembl_gene
+
+  covariates:
+    - median_window_aa_identity
+    - human_window_GC3
+    - human_window_CpG_density
+    - TMD_index
+    - TMD_length_aa
+    - TMD_mean_Kyte_Doolittle_hydropathy
+
+  covariate_standardization:
+    method: z_score
+    reference_population: prelocked_bridge_TMDs_with_nonmissing_covariate
+    outcome_independent: true
+
+  parameterization:
+    allow_location_specific_covariate_effects: true
+
+within_protein_model:
+
+  purpose: >
+    Test whether TMD-to-TMD variation in synonymous evolutionary
+    constraint within the same multipass protein predicts TMD-to-TMD
+    variation in spatial ribosome behavior.
+
+  minimum_valid_TMDs_per_gene_per_location: 2
+
+  transformation:
+    predictor: subtract_gene_mean_within_location_analysis_set
+    outcome: subtract_gene_mean_within_location_analysis_set
+    covariates: subtract_gene_mean_within_location_analysis_set
+
+  equivalent_model:
+    gene_by_location_fixed_effects: true
+
+  primary_within_test:
+    location_specific_score_slopes: true
+    joint_zero_slope_test_df: 3
+    cluster_robust_SE: human_ensembl_gene
+    alpha: 0.05
+
+replicate_sensitivity:
+
+  universe:
+    require_both_replicates_valid: true
+
+  analyses:
+    - D_rep1
+    - D_rep2
+
+  interpretation:
+    claimed_location_specific_effect_should_not_be_driven_by_opposite_replicate_directions: true
+
+negative_control:
+
+  outcome: E_pseudo_mean
+  definition: arithmetic_mean_of_E_pseudo_rep1_and_E_pseudo_rep2
+  require_both_replicates_valid: true
+
+  model:
+    same_as_primary_unadjusted: true
+
+  interpretation:
+    strong_parallel_association_in_pseudo_outcome_weakens_spatial_TMD_interpretation: true
+
+real_component_companion:
+
+  outcome: E_real_mean
+  definition: arithmetic_mean_of_E_real_rep1_and_E_real_rep2
+  role: mechanistic_interpretation_only
+
+predefined_stop_rule:
+
+  STOP_P5_primary_hypothesis_if_all:
+    - primary_joint_Wald_p_greater_or_equal_0.05
+    - no_location_specific_primary_95CI_excludes_zero
+    - within_protein_joint_Wald_p_greater_or_equal_0.05
+
+  if_STOP:
+    - do_not_scan_alternative_evolutionary_windows
+    - do_not_redefine_synonymous_predictor
+    - do_not_select_compartment_post_hoc
+    - archive_as_negative_bridge_result
+
+strong_bridge_support_if:
+  - primary_joint_Wald_p_less_than_0.05
+  - adjusted_joint_Wald_p_less_than_0.05
+  - within_protein_joint_Wald_p_less_than_0.05
+
+high_tier_story_strengthened_by:
+  - replicate_direction_concordance
+  - compartment_specificity
+  - no_parallel_pseudo_control_pattern
+  - substantial_effect_size_not_only_small_p_value
+
+causal_claim:
+  authorized: false
+  reason: observational_public_data_integration_without_synonymous_perturbation

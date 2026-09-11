@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "Please cite the archived release when a version DOI has actually been assigned."
+title: "Evolutionary-functional tests constrain links between TMD-proximal synonymous architecture and cotranslational membrane-protein handling: reproducibility package"
+type: software
+authors:
+  - family-names: Li
+    given-names: Ming
+version: 1.0.0
+abstract: "Project-authored code and archived summary statistics for a closed evolutionary-functional boundary study. MIT applies to author-owned code only; other materials retain their documented rights."

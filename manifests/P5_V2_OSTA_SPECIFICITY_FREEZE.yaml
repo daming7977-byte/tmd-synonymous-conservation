@@ -1,0 +1,60 @@
+project: P5_v2
+analysis: OST_A_mechanistic_specificity
+role: preregistered_secondary_after_MPT_primary_adjudication
+
+primary_MPT_adjudication:
+  status: INTERMEDIATE_BRIDGE_RESULT
+  may_be_changed_by_OST_A: false
+
+frozen_evolutionary_predictor:
+  name: POST30_90_4D_EXCESS_CONSERVATION_Z_MEDIAN
+  retuning_allowed: false
+
+OST_A_profiles:
+
+  OST48_rep1:
+    input: SRR33621390
+    IP: SRR33621389
+
+  OST48_rep2:
+    input: SRR33621388
+    IP: SRR33621387
+
+  RPN2_rep1:
+    input: SRR33621386
+    IP: SRR33621385
+
+processing:
+  identical_to_formal_MPT_pipeline: true
+  biological_mate: R1
+  cutadapt_version: 4.1
+  selected_lengths: [18,19,20,26,27,28,29]
+  A_site_offset_nt: 15
+  bowtie2_version: 2.2.6
+  tophat_version: 2.1.0
+  unique_mapping: "NH:i:1"
+
+OST_A_TMD_outcome:
+  anchor: TMD_C_terminal_end
+  window: plus_30_through_plus_90_codons
+  number_of_codons: 61
+  require_all_three_profiles_valid: true
+  aggregation: arithmetic_mean_of_three_profile_mean_log2_E
+  alternate_window_scan_allowed: false
+
+specificity_test:
+  universe: TMDs_valid_for_both_MPT_and_OST_A
+  clustering: human_ensembl_gene
+  test: two_sided
+  comparisons:
+    - MPT_score_slope_on_shared_universe
+    - OST_A_score_slope_on_shared_universe
+    - difference_outcome_MPT_minus_OST_A_slope
+
+interpretation:
+  specificity_strengthened_if:
+    - OST_A_absolute_slope_weaker_than_MPT
+    - MPT_minus_OST_A_score_association_differs_from_zero
+  OST_A_may_rescue_primary_MPT: false
+
+causal_claim_authorized: false
