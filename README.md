@@ -29,6 +29,6 @@ Public input datasets: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE297
 
 ## Release and archival status
 
-CITATION.cff intentionally has no public repository URL, DOI or release date until publication. A private GitHub repository has been created at https://github.com/daming7977-byte/tmd-synonymous-conservation . No public repository, published release or DOI is claimed yet. Zenodo archival remains pending. Follow RELEASE_CHECKLIST.md. No separately closed extension results are included.
+CITATION.cff records the private GitHub repository URL and the reserved Zenodo DOI 10.5281/zenodo.22705327. No public GitHub release or registered DOI is claimed yet. The DOI will be registered when the Zenodo record is published. Follow RELEASE_CHECKLIST.md. No separately closed extension results are included.
 
 Full manuscript freeze identifiers are retained in manifests/MANUSCRIPT_FREEZE_HASHES.md. This editorial release preparation did not execute scientific code or alter archived results.

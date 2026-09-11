@@ -12,10 +12,12 @@
     "Aligned ST1 temporal evidence metadata with the frozen submission table; numerical fields unchanged",
     "Added freeze-candidate manuscript and supplement PDF SHA256 identifiers",
     "Refreshed release digest inventory after metadata synchronization",
-    "Recorded creation of authenticated private GitHub repository; public release and DOI remain pending"
+    "Recorded creation of authenticated private GitHub repository; public release and DOI registration remain pending",
+    "Reserved Zenodo DOI 10.5281/zenodo.22705327 for v1.0.0; DOI not yet registered"
   ],
   "github_authenticated": true,
   "public_repository": null,
   "doi": null,
-  "private_repository": "https://github.com/daming7977-byte/tmd-synonymous-conservation"
+  "private_repository": "https://github.com/daming7977-byte/tmd-synonymous-conservation",
+  "reserved_zenodo_doi": "10.5281/zenodo.22705327"
 }

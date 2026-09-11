@@ -1,9 +1,11 @@
 cff-version: 1.2.0
-message: "Please cite the archived release when a version DOI has actually been assigned."
+message: "Please cite version 1.0.0 using the Zenodo DOI 10.5281/zenodo.22705327."
 title: "Evolutionary-functional tests constrain links between TMD-proximal synonymous architecture and cotranslational membrane-protein handling: reproducibility package"
 type: software
 authors:
   - family-names: Li
     given-names: Ming
 version: 1.0.0
+doi: "10.5281/zenodo.22705327"
+repository-code: "https://github.com/daming7977-byte/tmd-synonymous-conservation"
 abstract: "Project-authored code and archived summary statistics for a closed evolutionary-functional boundary study. MIT applies to author-owned code only; other materials retain their documented rights."
