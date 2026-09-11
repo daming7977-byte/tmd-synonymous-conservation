@@ -17,11 +17,13 @@
     "Removed duplicated historical TEMPORAL_NEGATIVE presentation row from release ST1; retained numerical/statistical values unchanged",
     "Corrected ACCESSION_MANIFEST provenance relationship label to reflect differing recorded hashes",
     "Documented render_submission_assets.py as a historical non-authoritative presentation entry point without running it",
-    "Updated release checklist and README to the existing private GitHub repository and reserved Zenodo DOI workflow"
+    "Updated release checklist and README to the existing private GitHub repository and reserved Zenodo DOI workflow",
+    "Changed existing GitHub repository visibility from PRIVATE to PUBLIC on 2026-09-11; v1.0.0 release and DOI registration remain pending",
+    "Finalized durable v1.0.0 public-release wording before tag creation; no scientific content changed"
   ],
   "github_authenticated": true,
-  "public_repository": null,
+  "public_repository": "https://github.com/daming7977-byte/tmd-synonymous-conservation",
   "doi": null,
-  "private_repository": "https://github.com/daming7977-byte/tmd-synonymous-conservation",
+  "private_repository": null,
   "reserved_zenodo_doi": "10.5281/zenodo.22705327"
 }

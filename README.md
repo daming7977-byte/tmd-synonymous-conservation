@@ -1,6 +1,6 @@
 # Evolutionary-functional membrane-protein boundary study
 
-Reproducibility code and archived summary results for the combined human membrane-protein study. Author: Ming Li. Scientific analysis is closed. This private repository is the v1.0.0 release candidate; the repository URL is recorded and Zenodo DOI 10.5281/zenodo.22705327 is reserved but not yet registered. No public GitHub release is claimed yet.
+Reproducibility code and archived summary results for the combined human membrane-protein study. Author: Ming Li. Scientific analysis is closed. This public repository contains the reviewed version 1.0.0 reproducibility package. The version-specific Zenodo DOI reserved for this release is 10.5281/zenodo.22705327; DOI registration occurs upon publication of the associated Zenodo record.
 
 ## Contents
 
@@ -29,6 +29,6 @@ Public input datasets: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE297
 
 ## Release and archival status
 
-CITATION.cff records the private GitHub repository URL and the reserved Zenodo DOI 10.5281/zenodo.22705327. No public GitHub release or registered DOI is claimed yet. The DOI will be registered when the Zenodo record is published. Follow RELEASE_CHECKLIST.md. No separately closed extension results are included.
+CITATION.cff records the public GitHub repository URL and the version-specific Zenodo DOI 10.5281/zenodo.22705327. Version 1.0.0 is the reviewed public release package; the corresponding GitHub release and Zenodo record provide the release and archival metadata. Follow RELEASE_CHECKLIST.md. No separately closed extension results are included.
 
 Full manuscript freeze identifiers are retained in manifests/MANUSCRIPT_FREEZE_HASHES.md. This editorial release preparation did not execute scientific code or alter archived results.
